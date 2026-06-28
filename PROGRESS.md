@@ -6,7 +6,7 @@ developer (or AI agent) picking up the project should read. Pair it with `PLAN.m
 
 Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 
-> **Current focus:** Phase 2 — basic layouts & navigation
+> **Current focus:** Phase 4 — Identity
 > **Last updated:** 2026-06-28 · **By:** Anthony / Claude
 
 ---
@@ -16,16 +16,16 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 - ✅ Workspace foundation: `package.json`, `pnpm-workspace.yaml`, `turbo.json`, `tsconfig.base.json`, `.gitignore`, `.env.example`, `biome.jsonc`
 - ✅ Tooling: Biome 2.5.1 (migrated), CI (`ci.yml`, `codeql.yml`), keep-alive workflow, branch-protection ruleset
 - ✅ Docs: `KICKOFF.md`, `README.md`, `AGENTS.md`/`apps/mobile/AGENTS.md`, `PLAN.md`, `PROGRESS.md`
-- ✅ Supabase migrations: `0001_ping.sql` (keep-alive table), `0002_stories.sql` (schema stub)
+- ✅ Supabase migrations: `20260628000001_ping.sql` (keep-alive table + RLS), `20260628000002_stories.sql` (schema), `20260628000003_narrations.sql` (narrator voices)
+- ✅ `supabase/config.toml` added; Supabase native GitHub integration configured (auto-migrates on merge to main)
 - ✅ `@acme/design-tokens`: warm story-book palette + spacing/font tokens (pure JS)
 - ✅ `@acme/config`: shared Tailwind preset consuming design tokens
 - ✅ `@acme/core`: package.json + tsconfig + `src/player/types.ts` (audio contracts) + Vitest 3 config
 - ✅ `apps/web`: Vite 6 + React 19.2 + React Router 7 + Tailwind 3 + Vitest 3 placeholder app
 - ✅ `apps/mobile`: Expo 53 + Expo Router + NativeWind 4 placeholder app (EAS build only)
 - ✅ `pnpm lint && pnpm typecheck && pnpm test && pnpm build` all pass locally
-- ⬜ Add repo secrets (`SUPABASE_URL`, `SUPABASE_ANON_KEY`, `EXPO_TOKEN`) — human step
+- ⬜ Add repo secrets (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`, `EXPO_TOKEN`) — human step
 - ⬜ Import `.github/rulesets/main-protection.json` via GitHub Settings — human step
-- ⬜ Green CI on an empty PR; merge blocked until checks pass — human step (push branch + open PR)
 
 ## Phase 1 — Design system + tokens + wiring
 
@@ -36,17 +36,26 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 
 ## Phase 2 — Basic layouts & navigation
 
-- ⬜ Web routes: Home, Story, Settings, Legal
-- ⬜ Mobile screens (Expo Router): Home, Story, Settings
-- ⬜ i18n scaffold (en/el) + language toggle setting
-- ⬜ Navigable shells with mock data on both platforms
+- ✅ Web routes: `/` (Home), `/story/:id` (Story), `/settings` (Settings), `/legal/*` (Privacy + Terms)
+- ✅ Mobile screens (Expo Router): Home tab, Settings tab, Story detail (`/story/[id]`)
+- ✅ Sticky NavBar with active-link highlighting (web)
+- ✅ i18n scaffold: `i18next` + `react-i18next` wired on both platforms with `en`/`el` translation files
+- ✅ Language toggle in Settings switches UI strings instantly on both platforms
+- ✅ Navigable shells with mock data; 60 tests passing (37 web + 23 mobile)
 
 ## Phase 3 — Database + data layer + source data
 
-- ⬜ Supabase project; apply `0002_stories.sql`; buckets + RLS
-- ⬜ `core` data layer (typed client + TanStack Query hooks)
-- ⬜ Author 30 stories' metadata; upload via `add-story.ts`
-- ⬜ Library lists real stories on both platforms
+- ✅ `@acme/core` typed Supabase client: `initSupabase`/`getSupabase` singleton; `fetchStories`/`fetchStory` query fns; `useStories`/`useStory` TanStack Query v5 hooks
+- ✅ `QueryClientProvider` + `initSupabase` wired at startup in both apps (web: `VITE_SUPABASE_*`, mobile: `EXPO_PUBLIC_SUPABASE_*`)
+- ✅ Home and Story screens consume real hooks with loading/error/empty states on both platforms
+- ✅ `narrations` table: each story supports up to 4 narrator voices (`male_adult`, `female_adult`, `male_child`, `female_child`); one audio file per voice per story
+- ✅ `scripts/add-story.ts` CLI: uploads audio to `audio/{slug}/{narrator_voice}.mp3`, upserts story + narration; requires `--narrator-voice`
+- ✅ `supabase/seed.sql`: 30 Aesop fables with EN + EL titles/descriptions; placeholder `female_adult` narration rows
+- ✅ `.env.example` split: root (service-role key only), `apps/web` (`VITE_*`), `apps/mobile` (`EXPO_PUBLIC_*`)
+- ✅ 72 tests passing (11 core + 37 web + 24 mobile); all CI checks green
+- ⬜ Create Supabase storage buckets (`audio`, `artwork`, public read) — human step
+- ⬜ Add GitHub secrets for Supabase anon keys — human step
+- ⬜ Upload real audio files via `pnpm add-story` — content step
 
 ## Phase 4 — Identity
 
@@ -101,24 +110,26 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 
 Record context so newcomers understand *why*, not just *what*.
 
-- **Store posture:** ship as a general app, **4+** rating (keeps identified
-  PostHog analytics + SSO). Kids Category is a later epic.
-- **Code sharing:** separate UIs over a shared `core` (maintainability over max
-  reuse). Styling shared via tokens + Tailwind/NativeWind.
-- **Identity:** Supabase anonymous sign-in from first launch; SSO links to the
-  same `user_id`. No raw device IDs.
+- **Store posture:** ship as a general app, **4+** rating (keeps identified PostHog analytics + SSO). Kids Category is a later epic.
+- **Code sharing:** separate UIs over a shared `core` (maintainability over max reuse). Styling shared via tokens + Tailwind/NativeWind.
+- **Identity:** Supabase anonymous sign-in from first launch; SSO links to the same `user_id`. No raw device IDs.
 - **AI tooling:** `AGENTS.md` canonical; `CLAUDE.md` imports it (`@AGENTS.md`).
-- **vitest@3 (not v2):** Vite 6 + vitest 2 have type-level Plugin incompatibilities;
-  vitest 3 targets vite 6 and resolves this cleanly.
+- **vitest@3 (not v2):** Vite 6 + vitest 2 have type-level Plugin incompatibilities; vitest 3 targets vite 6 and resolves this cleanly.
 - **postcss.config.cjs:** `apps/web` is `"type":"module"` so CJS config files need `.cjs` extension.
 - **Biome migrate:** ran `pnpm biome migrate --write` on first use per KICKOFF instruction; schema is now 2.5.1.
 - **Font:** Inter Variable (web via `@fontsource-variable/inter`) + Inter via `@expo-google-fonts/inter` (mobile). Inter has full Greek glyph coverage (U+0370–03FF). On mobile, `font-sans` maps to `Inter_400Regular`; weight variants use `font-sans-semibold` / `font-sans-bold` because React Native requires separate font files per weight.
-- *add new decisions here*
+- **Narrator voices:** `audio_path` and `duration_seconds` live in the `narrations` table, not `stories`. A `unique(story_id, narrator_voice)` constraint prevents duplicates. Audio storage path convention: `{slug}/{narrator_voice}.mp3`. Duration shows on the player screen (where a voice is selected), not the library list.
+- **Supabase DB types:** hand-written mirror in `packages/core/src/db/types.ts` rather than generated — avoids a live Supabase project dependency in CI. Regenerate with `supabase gen types typescript --project-id rdhcneqcdbtnncbhneki` when schema changes.
+- **Migration naming:** `YYYYMMDDHHmmss_description.sql` — required by Supabase CLI to track applied migrations and run `supabase db push` via the native GitHub integration.
+- **Seed vs migrations:** `supabase/seed.sql` runs on `supabase db reset` only (dev/staging). Migrations run on every environment via `supabase db push`. Never merge seed data into a migration file.
+- **`@types/react` pinned:** root `pnpm.overrides` forces `@types/react@~19.0.0` across the workspace to prevent duplicate copies (which cause `ReactNode` type incompatibility between packages).
+- **`@acme/core` tsconfig:** spec files excluded from `tsc --noEmit` (Vitest covers them); `"lib": ["ES2022", "DOM"]` added so `console` is available without pulling in `@types/node`.
 
 ## Blockers / open questions
 
 - ⬜ Legal review of policies before launch (ICO Children's Code).
 - ✅ Confirmed font with full Greek glyph coverage: Inter Variable.
-- ⬜ Supabase project not yet created (human prerequisite for Phase 3).
+- ✅ Supabase project created: `rdhcneqcdbtnncbhneki` — native GitHub integration configured.
+- ⬜ Storage buckets (`audio`, `artwork`) not yet created — human step before audio uploads work.
+- ⬜ GitHub secrets for Supabase anon keys not yet added — human step before live data loads.
 - ⬜ Expo/Apple/Google accounts not yet created (human prerequisite for Phase 11).
-- *add blockers here*

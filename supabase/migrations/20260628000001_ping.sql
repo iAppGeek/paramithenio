@@ -5,4 +5,8 @@ create table if not exists _ping (
   ts   timestamptz not null default now()
 );
 
+-- RLS on with no policies: service role bypasses RLS and can still insert,
+-- but the anon key cannot read or write this table.
+alter table _ping enable row level security;
+
 insert into _ping default values;

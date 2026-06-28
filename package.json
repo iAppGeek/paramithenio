@@ -7,7 +7,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@xmldom/xmldom": ">=0.8.13"
+      "@xmldom/xmldom": ">=0.8.13",
+      "@types/react": "~19.0.0"
     }
   },
   "scripts": {
@@ -17,12 +18,14 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "build": "turbo run build",
-    "keep-alive": "tsx scripts/keep-alive.ts"
+    "keep-alive": "tsx scripts/keep-alive.ts",
+    "add-story": "tsx scripts/add-story.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2",
+    "@supabase/supabase-js": "^2.108.2",
+    "tsx": "^4",
     "turbo": "^2",
-    "typescript": "^5",
-    "tsx": "^4"
+    "typescript": "^5"
   }
 }

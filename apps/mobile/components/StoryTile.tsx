@@ -3,22 +3,14 @@ import { Pressable, Text, View } from 'react-native';
 type StoryTileProps = {
   titleEn: string;
   titleEl: string;
-  durationSeconds: number | null;
   artworkUrl: string | null;
   locale?: 'en' | 'el';
   onPress?: () => void;
 };
 
-function formatDuration(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${m.toString()}:${s.toString().padStart(2, '0')}`;
-}
-
 export function StoryTile({
   titleEn,
   titleEl,
-  durationSeconds,
   artworkUrl: _artworkUrl,
   locale = 'en',
   onPress,
@@ -39,11 +31,6 @@ export function StoryTile({
         <Text numberOfLines={1} className="font-sans-semibold text-base text-stone-900">
           {title}
         </Text>
-        {durationSeconds !== null && (
-          <Text className="font-sans mt-0.5 text-sm text-stone-500">
-            {formatDuration(durationSeconds)}
-          </Text>
-        )}
       </View>
     </Pressable>
   );
