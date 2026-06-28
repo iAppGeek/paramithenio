@@ -118,7 +118,7 @@ if (artworkFile !== '') {
 
 const durationRaw = values['duration'];
 const durationSeconds = durationRaw !== '' ? parseInt(durationRaw, 10) : null;
-const tags = values['tags'] !== '' ? values['tags']!.split(',').map((t) => t.trim()) : [];
+const tags = values['tags'] ? values['tags'].split(',').map((t) => t.trim()) : [];
 
 // Upsert the story (content only, no audio fields).
 const { data: storyData, error: storyError } = await supabase

@@ -1,0 +1,4 @@
+{
+  // MD060: allow compact table style (spaces around pipes, no column alignment required)
+  "table-column-style": { "style": "compact" }
+}
