@@ -1,0 +1,28 @@
+{
+  "home": {
+    "title": "Παραμυθένιο",
+    "subtitle": "Greek fables for children"
+  },
+  "story": {
+    "back": "← Back",
+    "content_placeholder": "Audio story coming soon.",
+    "not_found": "Story not found."
+  },
+  "settings": {
+    "title": "Settings",
+    "language_label": "Language",
+    "language_en": "English",
+    "language_el": "Ελληνικά"
+  },
+  "legal": {
+    "title": "Legal",
+    "privacy_title": "Privacy Policy",
+    "terms_title": "Terms of Use",
+    "placeholder": "Content coming soon."
+  },
+  "nav": {
+    "home": "Home",
+    "settings": "Settings",
+    "legal": "Legal"
+  }
+}
