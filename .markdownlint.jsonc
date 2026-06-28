@@ -1,4 +1,11 @@
 {
+  // MD013: no line-length limit — task trackers and decision logs need long lines
+  "line-length": false,
+  // MD022/MD032: blanks around headings/lists — too strict for dense phase docs
+  "blanks-around-headings": false,
+  "blanks-around-lists": false,
+  // MD024: duplicate heading names are fine (every phase has "Tasks" and "Done when")
+  "no-duplicate-heading": false,
   // MD060: allow compact table style (spaces around pipes, no column alignment required)
   "table-column-style": { "style": "compact" }
 }

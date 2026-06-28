@@ -7,7 +7,7 @@ developer (or AI agent) picking up the project should read. Pair it with `PLAN.m
 Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 
 > **Current focus:** Phase 4 — Identity
-> **Last updated:** 2026-06-28 · **By:** Anthony / Claude
+> **Last updated:** 2026-06-28 · **By:** Anthony / Claude (session 2)
 
 ---
 
@@ -16,7 +16,7 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 - ✅ Workspace foundation: `package.json`, `pnpm-workspace.yaml`, `turbo.json`, `tsconfig.base.json`, `.gitignore`, `.env.example`, `biome.jsonc`
 - ✅ Tooling: Biome 2.5.1 (migrated), CI (`ci.yml`, `codeql.yml`), keep-alive workflow, branch-protection ruleset
 - ✅ Docs: `KICKOFF.md`, `README.md`, `AGENTS.md`/`apps/mobile/AGENTS.md`, `PLAN.md`, `PROGRESS.md`
-- ✅ Supabase migrations: `20260628000001_ping.sql` (keep-alive table + RLS), `20260628000002_stories.sql` (schema), `20260628000003_narrations.sql` (narrator voices)
+- ✅ Supabase migrations: `20260628000001_ping.sql` (keep-alive + RLS), `20260628000002_stories.sql` (schema), `20260628000003_narrations.sql` (narrator voices), `20260628000004_grants.sql` (SELECT grants to anon + authenticated)
 - ✅ `supabase/config.toml` added; Supabase native GitHub integration configured (auto-migrates on merge to main)
 - ✅ `@acme/design-tokens`: warm story-book palette + spacing/font tokens (pure JS)
 - ✅ `@acme/config`: shared Tailwind preset consuming design tokens
@@ -24,7 +24,9 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 - ✅ `apps/web`: Vite 6 + React 19.2 + React Router 7 + Tailwind 3 + Vitest 3 placeholder app
 - ✅ `apps/mobile`: Expo 53 + Expo Router + NativeWind 4 placeholder app (EAS build only)
 - ✅ `pnpm lint && pnpm typecheck && pnpm test && pnpm build` all pass locally
-- ⬜ Add repo secrets (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`, `EXPO_TOKEN`) — human step
+- ✅ Local env files created (`root .env`, `apps/web/.env.local`, `apps/mobile/.env.local`); `.claudeignore` blocks Claude from reading them
+- ✅ GitHub secrets added: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+- ⬜ GitHub secrets still needed: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`, `EXPO_TOKEN` — human step (needed for EAS builds)
 - ⬜ Import `.github/rulesets/main-protection.json` via GitHub Settings — human step
 
 ## Phase 1 — Design system + tokens + wiring
@@ -50,11 +52,12 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 - ✅ Home and Story screens consume real hooks with loading/error/empty states on both platforms
 - ✅ `narrations` table: each story supports up to 4 narrator voices (`male_adult`, `female_adult`, `male_child`, `female_child`); one audio file per voice per story
 - ✅ `scripts/add-story.ts` CLI: uploads audio to `audio/{slug}/{narrator_voice}.mp3`, upserts story + narration; requires `--narrator-voice`
-- ✅ `supabase/seed.sql`: 30 Aesop fables with EN + EL titles/descriptions; placeholder `female_adult` narration rows
+- ✅ `supabase/seed.sql`: 30 Aesop fables with EN + EL titles/descriptions; placeholder `female_adult` narration rows — seeded to remote DB
 - ✅ `.env.example` split: root (service-role key only), `apps/web` (`VITE_*`), `apps/mobile` (`EXPO_PUBLIC_*`)
+- ✅ DB types generated from live schema via `pnpm gen:types` (`supabase gen types typescript`); `NarratorVoice` lives in `packages/core/src/db/narrator-voice.ts` (not a PG enum)
+- ✅ Web app verified: fetches and displays 30 published stories from live Supabase DB
 - ✅ 72 tests passing (11 core + 37 web + 24 mobile); all CI checks green
-- ⬜ Create Supabase storage buckets (`audio`, `artwork`, public read) — human step
-- ⬜ Add GitHub secrets for Supabase anon keys — human step
+- ⬜ Create Supabase storage buckets (`audio`, `artwork`, public read) — human step (needed before `pnpm add-story` uploads work)
 - ⬜ Upload real audio files via `pnpm add-story` — content step
 
 ## Phase 4 — Identity
@@ -119,7 +122,7 @@ Record context so newcomers understand *why*, not just *what*.
 - **Biome migrate:** ran `pnpm biome migrate --write` on first use per KICKOFF instruction; schema is now 2.5.1.
 - **Font:** Inter Variable (web via `@fontsource-variable/inter`) + Inter via `@expo-google-fonts/inter` (mobile). Inter has full Greek glyph coverage (U+0370–03FF). On mobile, `font-sans` maps to `Inter_400Regular`; weight variants use `font-sans-semibold` / `font-sans-bold` because React Native requires separate font files per weight.
 - **Narrator voices:** `audio_path` and `duration_seconds` live in the `narrations` table, not `stories`. A `unique(story_id, narrator_voice)` constraint prevents duplicates. Audio storage path convention: `{slug}/{narrator_voice}.mp3`. Duration shows on the player screen (where a voice is selected), not the library list.
-- **Supabase DB types:** hand-written mirror in `packages/core/src/db/types.ts` rather than generated — avoids a live Supabase project dependency in CI. Regenerate with `supabase gen types typescript --project-id rdhcneqcdbtnncbhneki` when schema changes.
+- **Supabase DB types:** generated from live schema via `pnpm gen:types` (`supabase gen types typescript --project-id rdhcneqcdbtnncbhneki --schema public`). `NarratorVoice` is a TypeScript-only union (the DB column uses a text CHECK constraint, not a PG enum) and lives in `packages/core/src/db/narrator-voice.ts` so it is never overwritten by generation. Run `pnpm gen:types` after any schema migration.
 - **Migration naming:** `YYYYMMDDHHmmss_description.sql` — required by Supabase CLI to track applied migrations and run `supabase db push` via the native GitHub integration.
 - **Seed vs migrations:** `supabase/seed.sql` runs on `supabase db reset` only (dev/staging). Migrations run on every environment via `supabase db push`. Never merge seed data into a migration file.
 - **`@types/react` pinned:** root `pnpm.overrides` forces `@types/react@~19.0.0` across the workspace to prevent duplicate copies (which cause `ReactNode` type incompatibility between packages).
@@ -130,6 +133,6 @@ Record context so newcomers understand *why*, not just *what*.
 - ⬜ Legal review of policies before launch (ICO Children's Code).
 - ✅ Confirmed font with full Greek glyph coverage: Inter Variable.
 - ✅ Supabase project created: `rdhcneqcdbtnncbhneki` — native GitHub integration configured.
-- ⬜ Storage buckets (`audio`, `artwork`) not yet created — human step before audio uploads work.
-- ⬜ GitHub secrets for Supabase anon keys not yet added — human step before live data loads.
+- ⬜ Storage buckets (`audio`, `artwork`) not yet created — human step before `pnpm add-story` uploads work.
+- ✅ GitHub secrets for Supabase URL + anon key added — web app fetches live data.
 - ⬜ Expo/Apple/Google accounts not yet created (human prerequisite for Phase 11).
