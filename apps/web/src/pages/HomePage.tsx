@@ -39,7 +39,6 @@ export function HomePage(): React.ReactElement {
               key={story.id}
               titleEn={story.titleEn}
               titleEl={story.titleEl}
-              durationSeconds={story.durationSeconds}
               artworkUrl={story.artworkUrl}
               locale={locale}
               onPress={() => {

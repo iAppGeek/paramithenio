@@ -9,8 +9,6 @@ create table if not exists stories (
   title_el         text        not null,
   description_en   text,
   description_el   text,
-  duration_seconds integer,
-  audio_path       text        not null,  -- storage path inside the "audio" bucket
   artwork_path     text,                  -- storage path inside the "artwork" bucket, nullable
   tags             text[]      not null default '{}',
   category         text,

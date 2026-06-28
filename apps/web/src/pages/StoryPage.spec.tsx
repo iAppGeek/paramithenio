@@ -15,13 +15,20 @@ const MOCK_STORY: StoryDetail = {
   slug: 'fox-grapes',
   titleEn: 'The Fox and the Grapes',
   titleEl: 'Η Αλεπού και τα Σταφύλια',
-  durationSeconds: 310,
   artworkUrl: null,
   category: 'fable',
   tags: [],
+  availableVoices: ['female_adult'],
   descriptionEn: 'A fox fails to reach ripe grapes.',
   descriptionEl: 'Μια αλεπού αποτυγχάνει.',
-  audioPath: 'fox-grapes.mp3',
+  narrations: [
+    {
+      id: 'n1',
+      narratorVoice: 'female_adult',
+      audioPath: 'fox-grapes/female_adult.mp3',
+      durationSeconds: 310,
+    },
+  ],
 };
 
 function renderStoryPage(id = 'uuid-1'): void {

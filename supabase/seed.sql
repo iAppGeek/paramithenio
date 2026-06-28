@@ -1,15 +1,14 @@
 -- Seed data: 30 classic Aesop's fables for development and staging.
--- audio_path values are placeholders; run scripts/add-story.ts to upload real audio.
+-- Narration rows use placeholder audio_paths; run scripts/add-story.ts to upload real audio.
 -- Set published_at to now() so stories appear in the library during testing.
 
-insert into stories (slug, title_en, title_el, description_en, description_el, audio_path, tags, category, published_at) values
+insert into stories (slug, title_en, title_el, description_en, description_el, tags, category, published_at) values
 
 ('the-tortoise-and-the-hare',
  'The Tortoise and the Hare',
  'Ο Λαγός και η Χελώνα',
  'A speedy hare mocks a slow tortoise, but loses the race through arrogance.',
  'Ένας γρήγορος λαγός χλευάζει μια αργή χελώνα, αλλά χάνει τον αγώνα λόγω αλαζονείας.',
- 'the-tortoise-and-the-hare.mp3',
  ARRAY['hare','tortoise','patience','pride'], 'fable', now()),
 
 ('the-fox-and-the-grapes',
@@ -17,7 +16,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αλεπού και τα Σταφύλια',
  'A fox unable to reach ripe grapes convinces himself they are sour.',
  'Μια αλεπού που δεν μπορεί να φτάσει τα σταφύλια πείθει τον εαυτό της ότι είναι ξινά.',
- 'the-fox-and-the-grapes.mp3',
  ARRAY['fox','grapes','sour grapes'], 'fable', now()),
 
 ('the-ant-and-the-grasshopper',
@@ -25,7 +23,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Το Μυρμήγκι και ο Τζίτζικας',
  'An industrious ant prepares for winter while a carefree grasshopper sings all summer.',
  'Ένα εργατικό μυρμήγκι ετοιμάζεται για τον χειμώνα ενώ ένας αμέριμνος τζίτζικας τραγουδά όλο το καλοκαίρι.',
- 'the-ant-and-the-grasshopper.mp3',
  ARRAY['ant','grasshopper','preparation','industry'], 'fable', now()),
 
 ('the-boy-who-cried-wolf',
@@ -33,7 +30,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Το Αγόρι που Φώναξε Λύκο',
  'A shepherd boy tricks villagers with false wolf alarms, then is ignored when a wolf really comes.',
  'Ένας βοσκόπουλος ξεγελά τους χωρικούς με ψεύτικες συναγερμούς για λύκο και δεν τον πιστεύουν όταν ο λύκος έρθει αληθινά.',
- 'the-boy-who-cried-wolf.mp3',
  ARRAY['wolf','shepherd','honesty','lies'], 'fable', now()),
 
 ('the-lion-and-the-mouse',
@@ -41,7 +37,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Το Λιοντάρι και το Ποντίκι',
  'A tiny mouse saves a mighty lion who once spared its life.',
  'Ένα μικροσκοπικό ποντίκι σώζει έναν ισχυρό λέοντα που κάποτε του χάρισε τη ζωή.',
- 'the-lion-and-the-mouse.mp3',
  ARRAY['lion','mouse','gratitude','kindness'], 'fable', now()),
 
 ('the-crow-and-the-pitcher',
@@ -49,7 +44,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Το Κοράκι και το Στάμνο',
  'A thirsty crow cleverly drops pebbles into a pitcher to raise the water level.',
  'Ένα διψασμένο κοράκι ρίχνει επιδέξια βοτσαλάκια σε μια στάμνα για να ανεβάσει το επίπεδο του νερού.',
- 'the-crow-and-the-pitcher.mp3',
  ARRAY['crow','pitcher','ingenuity','water'], 'fable', now()),
 
 ('the-fox-and-the-stork',
@@ -57,7 +51,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αλεπού και ο Πελαργός',
  'A fox tricks a stork with shallow soup, and the stork gets her revenge with a tall-necked jar.',
  'Μια αλεπού κοροϊδεύει έναν πελαργό με ρηχή σούπα και ο πελαργός εκδικείται με ψηλόλαιμο βάζο.',
- 'the-fox-and-the-stork.mp3',
  ARRAY['fox','stork','revenge','trickery'], 'fable', now()),
 
 ('the-dog-and-his-reflection',
@@ -65,7 +58,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Σκύλος και η Σκιά του',
  'A greedy dog loses his bone by snapping at its reflection in the water.',
  'Ένας άπληστος σκύλος χάνει το κόκαλό του προσπαθώντας να αρπάξει την αντανάκλασή του στο νερό.',
- 'the-dog-and-his-reflection.mp3',
  ARRAY['dog','reflection','greed'], 'fable', now()),
 
 ('the-goose-that-laid-golden-eggs',
@@ -73,7 +65,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Χήνα με τα Χρυσά Αυγά',
  'A farmer kills his golden-egg-laying goose hoping to find gold inside, and loses everything.',
  'Ένας αγρότης σκοτώνει τη χήνα που γεννά χρυσά αυγά ελπίζοντας να βρει χρυσό μέσα της και χάνει τα πάντα.',
- 'the-goose-that-laid-golden-eggs.mp3',
  ARRAY['goose','gold','greed','patience'], 'fable', now()),
 
 ('the-wind-and-the-sun',
@@ -81,7 +72,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Αέρας και ο Ήλιος',
  'The wind and sun compete to remove a traveller''s coat; gentle persuasion beats force.',
  'Ο άνεμος και ο ήλιος ανταγωνίζονται να βγάλουν το παλτό ενός ταξιδιώτη. Η ήπια πειθώ νικά τη βία.',
- 'the-wind-and-the-sun.mp3',
  ARRAY['wind','sun','persuasion','force'], 'fable', now()),
 
 ('the-fox-and-the-crow',
@@ -89,7 +79,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αλεπού και το Κοράκι',
  'A fox flatters a crow into dropping its cheese by asking it to sing.',
  'Μια αλεπού κολακεύει ένα κοράκι για να αφήσει το τυρί του ζητώντας του να τραγουδήσει.',
- 'the-fox-and-the-crow.mp3',
  ARRAY['fox','crow','flattery','cheese'], 'fable', now()),
 
 ('the-city-mouse-and-the-country-mouse',
@@ -97,7 +86,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Αστικός Ποντικός και ο Αγροτικός',
  'A country mouse visits the city and finds its luxuries too dangerous.',
  'Ένα αγροτικό ποντίκι επισκέπτεται την πόλη και βρίσκει τις πολυτέλειές της πολύ επικίνδυνες.',
- 'the-city-mouse-and-the-country-mouse.mp3',
  ARRAY['mouse','city','country','simplicity'], 'fable', now()),
 
 ('the-wolf-in-sheeps-clothing',
@@ -105,7 +93,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Λύκος με το Δέρμα Προβάτου',
  'A wolf disguises itself as a sheep to enter the flock and is eventually caught.',
  'Ένας λύκος μεταμφιέζεται σε πρόβατο για να μπει στο κοπάδι και τελικά τον πιάνουν.',
- 'the-wolf-in-sheeps-clothing.mp3',
  ARRAY['wolf','sheep','deception','disguise'], 'fable', now()),
 
 ('the-lions-share',
@@ -113,7 +100,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Το Μερίδιο του Λέοντα',
  'A lion hunts with partners but claims all the prey for himself through threats.',
  'Ένα λιοντάρι κυνηγά με συντρόφους αλλά διεκδικεί όλη τη λεία για τον εαυτό του με απειλές.',
- 'the-lions-share.mp3',
  ARRAY['lion','sharing','power','greed'], 'fable', now()),
 
 ('the-milkmaid-and-her-pail',
@@ -121,7 +107,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αγελαδοτρόφος και ο Κουβάς',
  'A milkmaid daydreams of wealth from her milk but spills the pail by tossing her head.',
  'Μια αγελαδοτρόφος ονειρεύεται πλούτη από το γάλα της αλλά αναποδογυρίζει τον κουβά σηκώνοντας το κεφάλι της.',
- 'the-milkmaid-and-her-pail.mp3',
  ARRAY['milkmaid','daydream','caution'], 'fable', now()),
 
 ('the-bat-and-the-weasels',
@@ -129,7 +114,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Νυχτερίδα και οι Νυφίτσες',
  'A bat escapes two weasels by claiming to be a bird with one and a mouse with the other.',
  'Μια νυχτερίδα ξεφεύγει από δύο νυφίτσες ισχυριζόμενη ότι είναι πουλί με τη μία και ποντίκι με την άλλη.',
- 'the-bat-and-the-weasels.mp3',
  ARRAY['bat','weasel','adaptability','cunning'], 'fable', now()),
 
 ('the-peacock-and-the-crane',
@@ -137,7 +121,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Το Παγόνι και ο Γερανός',
  'A vain peacock mocks the plain crane, but the crane replies that it can soar to the heavens.',
  'Ένα ματαιόδοξο παγόνι χλευάζει τον απλό γερανό, αλλά ο γερανός απαντά ότι μπορεί να πετάξει στους ουρανούς.',
- 'the-peacock-and-the-crane.mp3',
  ARRAY['peacock','crane','vanity','ability'], 'fable', now()),
 
 ('the-oak-and-the-reed',
@@ -145,7 +128,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Βελανιδιά και το Καλάμι',
  'A mighty oak falls in a storm while a flexible reed survives by bending.',
  'Μια δυνατή βελανιδιά πέφτει στη θύελλα ενώ ένα εύκαμπτο καλάμι επιζεί λυγίζοντας.',
- 'the-oak-and-the-reed.mp3',
  ARRAY['oak','reed','flexibility','strength'], 'fable', now()),
 
 ('the-heron',
@@ -153,7 +135,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Ερωδιός',
  'A heron refuses small fish hoping for bigger ones and ends up hungry.',
  'Ένας ερωδιός αρνείται μικρά ψάρια ελπίζοντας για μεγαλύτερα και καταλήγει νηστικός.',
- 'the-heron.mp3',
  ARRAY['heron','fish','contentment','greed'], 'fable', now()),
 
 ('the-fox-and-the-cat',
@@ -161,7 +142,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αλεπού και η Γάτα',
  'A fox brags about many escape tricks while a cat has only one — and the cat survives.',
  'Μια αλεπού καυχιέται για πολλά κόλπα διαφυγής ενώ η γάτα έχει μόνο ένα — και η γάτα επιζεί.',
- 'the-fox-and-the-cat.mp3',
  ARRAY['fox','cat','simplicity','cunning'], 'fable', now()),
 
 ('the-bundle-of-sticks',
@@ -169,7 +149,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Δέσμη από Ξύλα',
  'A father shows his quarrelling sons that sticks together cannot be broken.',
  'Ένας πατέρας δείχνει στους τσακωμένους γιους του ότι τα ξύλα μαζί δεν μπορούν να σπάσουν.',
- 'the-bundle-of-sticks.mp3',
  ARRAY['unity','family','strength'], 'fable', now()),
 
 ('the-belly-and-the-members',
@@ -177,7 +156,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Κοιλιά και τα Μέλη',
  'Body parts rebel against the belly for doing nothing, but soon learn every part needs the other.',
  'Τα μέλη του σώματος επαναστατούν κατά της κοιλιάς που δεν κάνει τίποτα, αλλά σύντομα μαθαίνουν ότι κάθε μέρος χρειάζεται το άλλο.',
- 'the-belly-and-the-members.mp3',
  ARRAY['body','unity','cooperation'], 'fable', now()),
 
 ('the-two-crabs',
@@ -185,7 +163,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Τα Δύο Καβούρια',
  'A mother crab tells her son to walk straight, but cannot do so herself.',
  'Μια μητέρα καβούρι λέει στον γιο της να περπατάει ίσια, αλλά δεν μπορεί να το κάνει και η ίδια.',
- 'the-two-crabs.mp3',
  ARRAY['crab','hypocrisy','example'], 'fable', now()),
 
 ('the-bear-and-the-two-travelers',
@@ -193,7 +170,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αρκούδα και οι Δύο Ταξιδιώτες',
  'One traveller abandons the other when a bear attacks; the survivor learns who his true friend is.',
  'Ένας ταξιδιώτης εγκαταλείπει τον άλλο όταν επιτίθεται αρκούδα. Ο επιζών μαθαίνει ποιος είναι ο αληθινός του φίλος.',
- 'the-bear-and-the-two-travelers.mp3',
  ARRAY['bear','friendship','loyalty','adversity'], 'fable', now()),
 
 ('the-ass-and-the-lapdog',
@@ -201,7 +177,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Γάιδαρος και ο Σκυλάκος',
  'A donkey tries to imitate a pampered lapdog and is beaten for his trouble.',
  'Ένας γάιδαρος προσπαθεί να μιμηθεί έναν χαδιάρη σκυλάκο και το πληρώνει ακριβά.',
- 'the-ass-and-the-lapdog.mp3',
  ARRAY['donkey','lapdog','envy','imitation'], 'fable', now()),
 
 ('the-miller-his-son-and-their-ass',
@@ -209,7 +184,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Μυλωνάς, ο Γιος του και ο Γάιδαρός τους',
  'A miller and son try to please everyone''s advice about riding their donkey, and please no one.',
  'Ένας μυλωνάς και ο γιος του προσπαθούν να ευχαριστήσουν τις συμβουλές όλων για τον γάιδαρό τους και δεν ευχαριστούν κανέναν.',
- 'the-miller-his-son-and-their-ass.mp3',
  ARRAY['miller','donkey','pleasing everyone'], 'fable', now()),
 
 ('the-wolf-and-the-lamb',
@@ -217,7 +191,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Λύκος και το Αρνί',
  'A wolf invents false accusations against a lamb to justify devouring it.',
  'Ένας λύκος επινοεί ψευδείς κατηγορίες κατά ενός αρνιού για να δικαιολογήσει το να το φάει.',
- 'the-wolf-and-the-lamb.mp3',
  ARRAY['wolf','lamb','injustice','power'], 'fable', now()),
 
 ('the-miser-and-his-gold',
@@ -225,7 +198,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Τσιγκούνης και ο Χρυσός του',
  'A miser buries his gold and loses it; a neighbour tells him a stone would do as well.',
  'Ένας τσιγκούνης θάβει τον χρυσό του και τον χάνει. Ένας γείτονας του λέει ότι μια πέτρα θα χρησίμευε εξίσου.',
- 'the-miser-and-his-gold.mp3',
  ARRAY['miser','gold','wealth','usefulness'], 'fable', now()),
 
 ('the-cock-and-the-jewel',
@@ -233,7 +205,6 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Ο Κόκορας και το Κόσμημα',
  'A rooster finds a precious jewel while scratching for food and decides it is worthless to him.',
  'Ένας κόκορας βρίσκει ένα πολύτιμο κόσμημα ψάχνοντας για φαγητό και αποφασίζει ότι δεν του χρησιμεύει.',
- 'the-cock-and-the-jewel.mp3',
  ARRAY['rooster','jewel','value','wisdom'], 'fable', now()),
 
 ('the-fox-and-the-hedgehog',
@@ -241,5 +212,10 @@ insert into stories (slug, title_en, title_el, description_en, description_el, a
  'Η Αλεπού και ο Σκαντζόχοιρος',
  'A fox stuck in a stream is advised to keep its fleas rather than invite hungrier ones.',
  'Μια αλεπού κολλημένη σε ρεύμα συμβουλεύεται να κρατήσει τους ψύλλους της αντί να προσκαλέσει πιο πεινασμένους.',
- 'the-fox-and-the-hedgehog.mp3',
  ARRAY['fox','hedgehog','wisdom','fleas'], 'fable', now());
+
+-- Placeholder narrations (female_adult voice) so stories appear in the library during dev.
+-- Replace audio_path values by running: pnpm add-story --slug=<slug> --narrator-voice=female_adult --audio=<file>
+insert into narrations (story_id, narrator_voice, audio_path)
+select id, 'female_adult', slug || '/female_adult.mp3'
+from stories;

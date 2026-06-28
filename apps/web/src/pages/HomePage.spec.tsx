@@ -17,20 +17,20 @@ const MOCK_STORIES: StorySummary[] = [
     slug: 'tortoise-hare',
     titleEn: 'The Tortoise and the Hare',
     titleEl: 'Ο Λαγός και η Χελώνα',
-    durationSeconds: 420,
     artworkUrl: null,
     category: 'fable',
     tags: [],
+    availableVoices: ['female_adult'],
   },
   {
     id: 'uuid-2',
     slug: 'fox-grapes',
     titleEn: 'The Fox and the Grapes',
     titleEl: 'Η Αλεπού και τα Σταφύλια',
-    durationSeconds: 310,
     artworkUrl: null,
     category: 'fable',
     tags: [],
+    availableVoices: ['female_adult'],
   },
 ];
 

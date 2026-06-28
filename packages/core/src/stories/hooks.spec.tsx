@@ -21,10 +21,10 @@ const MOCK_STORY: StorySummary = {
   slug: 'fox-grapes',
   titleEn: 'The Fox and the Grapes',
   titleEl: 'Η Αλεπού και τα Σταφύλια',
-  durationSeconds: 310,
   artworkUrl: null,
   category: 'fable',
   tags: ['fox'],
+  availableVoices: ['female_adult'],
 };
 
 function createWrapper(): ComponentType<{ children: ReactNode }> {
@@ -63,14 +63,21 @@ describe('useStory', () => {
       ...MOCK_STORY,
       descriptionEn: 'A fox fails to reach ripe grapes.',
       descriptionEl: 'Μια αλεπού αποτυγχάνει να φτάσει τα σταφύλια.',
-      audioPath: 'fox-grapes.mp3',
+      narrations: [
+        {
+          id: 'n1',
+          narratorVoice: 'female_adult',
+          audioPath: 'fox-grapes/female_adult.mp3',
+          durationSeconds: 310,
+        },
+      ],
     });
   });
 
   it('returns story detail on success', async () => {
     const { result } = renderHook(() => useStory('uuid-1'), { wrapper: createWrapper() });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data?.audioPath).toBe('fox-grapes.mp3');
+    expect(result.current.data?.narrations[0]?.audioPath).toBe('fox-grapes/female_adult.mp3');
   });
 
   it('is disabled when id is empty', () => {

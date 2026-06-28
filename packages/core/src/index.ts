@@ -1,5 +1,5 @@
 export { getSupabase, initSupabase } from './db/client.js';
-export type { Database } from './db/types.js';
+export type { Database, NarratorVoice } from './db/types.js';
 export type {
   AudioAdapter,
   PlaybackState,
@@ -10,4 +10,4 @@ export type {
 } from './player/types.js';
 export { useStories, useStory } from './stories/hooks.js';
 export { fetchStories, fetchStory } from './stories/queries.js';
-export type { StoryDetail, StorySummary } from './stories/types.js';
+export type { Narration, StoryDetail, StorySummary } from './stories/types.js';
