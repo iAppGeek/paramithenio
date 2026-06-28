@@ -1,0 +1,12 @@
+{
+  "name": "@acme/design-tokens",
+  "version": "0.0.0",
+  "private": true,
+  "main": "tokens.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "typecheck": "echo 'no TS sources in design-tokens'",
+    "test": "echo 'no tests in design-tokens'",
+    "build": "echo 'design-tokens is pure JS, no build needed'"
+  }
+}
