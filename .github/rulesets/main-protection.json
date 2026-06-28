@@ -32,7 +32,7 @@
           { "context": "Test" },
           { "context": "Build" },
           { "context": "Security" },
-          { "context": "Analyze" }
+          { "context": "Analyze (javascript-typescript)" }
         ]
       }
     }
