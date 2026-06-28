@@ -1,4 +1,5 @@
 import '../global.css';
+import '../i18n';
 import { Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
@@ -21,5 +22,10 @@ export default function RootLayout(): React.ReactElement | null {
 
   if (!fontsLoaded && !fontError) return null;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="story/[id]" />
+    </Stack>
+  );
 }

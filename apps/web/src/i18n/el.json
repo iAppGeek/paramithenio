@@ -1,0 +1,28 @@
+{
+  "home": {
+    "title": "Παραμυθένιο",
+    "subtitle": "Ελληνικά παραμύθια για παιδιά"
+  },
+  "story": {
+    "back": "← Πίσω",
+    "content_placeholder": "Ηχητικό παραμύθι σύντομα.",
+    "not_found": "Το παραμύθι δεν βρέθηκε."
+  },
+  "settings": {
+    "title": "Ρυθμίσεις",
+    "language_label": "Γλώσσα",
+    "language_en": "English",
+    "language_el": "Ελληνικά"
+  },
+  "legal": {
+    "title": "Νομικά",
+    "privacy_title": "Πολιτική Απορρήτου",
+    "terms_title": "Όροι Χρήσης",
+    "placeholder": "Περιεχόμενο σύντομα."
+  },
+  "nav": {
+    "home": "Αρχική",
+    "settings": "Ρυθμίσεις",
+    "legal": "Νομικά"
+  }
+}
