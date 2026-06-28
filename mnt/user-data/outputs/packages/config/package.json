@@ -1,0 +1,11 @@
+{
+  "name": "@acme/config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./tailwind-preset": "./tailwind-preset.js"
+  },
+  "dependencies": {
+    "@acme/design-tokens": "workspace:*"
+  }
+}
