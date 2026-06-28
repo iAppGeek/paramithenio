@@ -15,7 +15,15 @@
     "build": "tsc --noEmit"
   },
   "devDependencies": {
-    "vitest": "^3",
-    "typescript": "^5"
+    "@testing-library/react": "^16",
+    "jsdom": "^26",
+    "react": "^19.2.7",
+    "react-dom": "^19.2",
+    "typescript": "^5",
+    "vitest": "^3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
+    "@tanstack/react-query": "^5"
   }
 }

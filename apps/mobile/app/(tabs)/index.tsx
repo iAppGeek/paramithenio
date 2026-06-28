@@ -1,14 +1,15 @@
+import { useStories } from '@acme/core';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { Screen } from '../../components/Screen';
 import { StoryTile } from '../../components/StoryTile';
 import { Text } from '../../components/Text';
-import { SAMPLE_STORIES } from '../../data/stories';
 
 export default function HomeScreen(): React.ReactElement {
   const { t, i18n } = useTranslation();
   const router = useRouter();
+  const { data: stories, isLoading, isError } = useStories();
   const locale = i18n.language === 'el' ? 'el' : 'en';
 
   return (
@@ -19,10 +20,18 @@ export default function HomeScreen(): React.ReactElement {
           {t('home.subtitle')}
         </Text>
         <View className="mt-8 gap-3">
-          {SAMPLE_STORIES.map((story) => (
+          {isLoading && <Text variant="body">{t('library.loading')}</Text>}
+          {isError && <Text variant="body">{t('library.error')}</Text>}
+          {!isLoading && !isError && stories !== undefined && stories.length === 0 && (
+            <Text variant="body">{t('library.empty')}</Text>
+          )}
+          {stories?.map((story) => (
             <StoryTile
               key={story.id}
-              {...story}
+              titleEn={story.titleEn}
+              titleEl={story.titleEl}
+              durationSeconds={story.durationSeconds}
+              artworkUrl={story.artworkUrl}
               locale={locale}
               onPress={() => {
                 router.push(`/story/${story.id}`);

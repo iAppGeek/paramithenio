@@ -20,6 +20,11 @@
     "terms_title": "Terms of Use",
     "placeholder": "Content coming soon."
   },
+  "library": {
+    "loading": "Loading stories…",
+    "empty": "No stories yet.",
+    "error": "Could not load stories."
+  },
   "nav": {
     "home": "Home",
     "settings": "Settings",
