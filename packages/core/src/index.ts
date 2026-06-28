@@ -1,5 +1,6 @@
 export { getSupabase, initSupabase } from './db/client.js';
-export type { Database, NarratorVoice } from './db/types.js';
+export type { NarratorVoice } from './db/narrator-voice.js';
+export type { Database } from './db/types.js';
 export type {
   AudioAdapter,
   PlaybackState,

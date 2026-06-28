@@ -8,8 +8,8 @@ import './i18n/index.js';
 import './index.css';
 
 initSupabase(
-  (import.meta.env['VITE_SUPABASE_URL'] as string | undefined) ?? '',
-  (import.meta.env['VITE_SUPABASE_ANON_KEY'] as string | undefined) ?? '',
+  (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '',
+  (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? '',
 );
 
 const queryClient = new QueryClient();

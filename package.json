@@ -19,7 +19,8 @@
     "test": "turbo run test",
     "build": "turbo run build",
     "keep-alive": "tsx scripts/keep-alive.ts",
-    "add-story": "tsx scripts/add-story.ts"
+    "add-story": "tsx scripts/add-story.ts",
+    "gen:types": "supabase gen types typescript --project-id rdhcneqcdbtnncbhneki --schema public > packages/core/src/db/types.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2",

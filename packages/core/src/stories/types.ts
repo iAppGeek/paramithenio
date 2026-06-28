@@ -1,6 +1,6 @@
-export type { NarratorVoice } from '../db/types.js';
+export type { NarratorVoice } from '../db/narrator-voice.js';
 
-import type { NarratorVoice } from '../db/types.js';
+import type { NarratorVoice } from '../db/narrator-voice.js';
 
 export type Narration = {
   id: string;
