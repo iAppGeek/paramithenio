@@ -130,7 +130,7 @@ const borderRadius = {
 
 /** @type {Record<string, string | string[]>} */
 const fontFamily = {
-  sans: ['Inter', 'system-ui', 'sans-serif'],
+  sans: ['Inter Variable', 'Inter', 'system-ui', 'sans-serif'],
   serif: ['Georgia', 'Cambria', 'serif'],
   mono: ['JetBrains Mono', 'Menlo', 'monospace'],
 };

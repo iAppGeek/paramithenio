@@ -6,7 +6,7 @@ developer (or AI agent) picking up the project should read. Pair it with `PLAN.m
 
 Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 
-> **Current focus:** Phase 1 — design system + tokens + wiring
+> **Current focus:** Phase 2 — basic layouts & navigation
 > **Last updated:** 2026-06-28 · **By:** Anthony / Claude
 
 ---
@@ -29,10 +29,10 @@ Status legend: ✅ done · 🚧 in progress · ⬜ pending · ⛔ blocked
 
 ## Phase 1 — Design system + tokens + wiring
 
-- ⬜ `tokens.js` + shared Tailwind preset (drafted) wired into web Tailwind
-- ⬜ NativeWind wiring on mobile (Babel/Metro + `global.css`)
-- ⬜ Base primitives (Button, Screen, Text, StoryTile) from tokens
-- ⬜ Greek-capable font verified in both languages
+- ✅ `tokens.js` + shared Tailwind preset wired into web Tailwind (`@fontsource-variable/inter` import in `index.css`)
+- ✅ NativeWind wiring on mobile (Babel plugin, Metro config, `global.css`, `useFonts` for Inter)
+- ✅ Base primitives (Button, Screen, Text, StoryTile) in each app with token classes only
+- ✅ Greek-capable font: Inter Variable on web; `@expo-google-fonts/inter` on mobile; both apps show Greek story titles in StoryTile
 
 ## Phase 2 — Basic layouts & navigation
 
@@ -112,12 +112,13 @@ Record context so newcomers understand *why*, not just *what*.
   vitest 3 targets vite 6 and resolves this cleanly.
 - **postcss.config.cjs:** `apps/web` is `"type":"module"` so CJS config files need `.cjs` extension.
 - **Biome migrate:** ran `pnpm biome migrate --write` on first use per KICKOFF instruction; schema is now 2.5.1.
+- **Font:** Inter Variable (web via `@fontsource-variable/inter`) + Inter via `@expo-google-fonts/inter` (mobile). Inter has full Greek glyph coverage (U+0370–03FF). On mobile, `font-sans` maps to `Inter_400Regular`; weight variants use `font-sans-semibold` / `font-sans-bold` because React Native requires separate font files per weight.
 - *add new decisions here*
 
 ## Blockers / open questions
 
 - ⬜ Legal review of policies before launch (ICO Children's Code).
-- ⬜ Confirm a display/body font with full Greek glyph coverage.
+- ✅ Confirmed font with full Greek glyph coverage: Inter Variable.
 - ⬜ Supabase project not yet created (human prerequisite for Phase 3).
 - ⬜ Expo/Apple/Google accounts not yet created (human prerequisite for Phase 11).
 - *add blockers here*
