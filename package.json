@@ -5,6 +5,11 @@
   "engines": {
     "node": ">=20"
   },
+  "pnpm": {
+    "overrides": {
+      "@xmldom/xmldom": ">=0.8.13"
+    }
+  },
   "scripts": {
     "lint": "biome check .",
     "lint:fix": "biome check --write .",

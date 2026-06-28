@@ -1,0 +1,40 @@
+{
+  "name": "@acme/mobile",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "typecheck": "tsc --noEmit",
+    "test": "jest --passWithNoTests",
+    "build": "echo 'Mobile builds run on EAS. Run: eas build --platform all'"
+  },
+  "dependencies": {
+    "@acme/core": "workspace:*",
+    "@tanstack/react-query": "^5",
+    "expo": "~53.0.0",
+    "expo-router": "~4.0.0",
+    "expo-status-bar": "~2.2.0",
+    "i18next": "^24",
+    "nativewind": "^4",
+    "react": "^19",
+    "react-i18next": "^15",
+    "react-native": "0.79.2",
+    "react-native-safe-area-context": "^5",
+    "react-native-screens": "^4",
+    "zustand": "^5"
+  },
+  "devDependencies": {
+    "@acme/config": "workspace:*",
+    "@babel/core": "^7",
+    "@testing-library/react-native": "^12",
+    "@types/react": "~19.0.0",
+    "jest": "^29",
+    "jest-expo": "~53.0.0",
+    "tailwindcss": "^3",
+    "typescript": "^5"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "passWithNoTests": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@acme/config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./tailwind-preset": "./tailwind-preset.js"
+  },
+  "dependencies": {
+    "@acme/design-tokens": "workspace:*"
+  },
+  "scripts": {
+    "typecheck": "echo 'no TS sources in config'",
+    "test": "echo 'no tests in config'",
+    "build": "echo 'config is pure JS, no build needed'"
+  }
+}
