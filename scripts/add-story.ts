@@ -46,10 +46,10 @@ const { values } = parseArgs({
   strict: true,
 });
 
-const slug = values['slug'];
+const slug = values.slug;
 const titleEn = values['title-en'];
 const titleEl = values['title-el'];
-const audioFile = values['audio'];
+const audioFile = values.audio;
 const narratorVoiceRaw = values['narrator-voice'];
 
 if (!slug || !titleEn || !titleEl || !audioFile || !narratorVoiceRaw) {
@@ -96,7 +96,7 @@ if (uploadError !== null) {
 }
 
 let artworkStoragePath: string | null = null;
-const artworkFile = values['artwork'];
+const artworkFile = values.artwork;
 if (artworkFile !== '') {
   const artworkPath = path.resolve(artworkFile);
   if (!fs.existsSync(artworkPath)) {
@@ -116,9 +116,9 @@ if (artworkFile !== '') {
   }
 }
 
-const durationRaw = values['duration'];
+const durationRaw = values.duration;
 const durationSeconds = durationRaw !== '' ? parseInt(durationRaw, 10) : null;
-const tags = values['tags'] !== '' ? values['tags']!.split(',').map((t) => t.trim()) : [];
+const tags = values.tags ? values.tags.split(',').map((t) => t.trim()) : [];
 
 // Upsert the story (content only, no audio fields).
 const { data: storyData, error: storyError } = await supabase
@@ -131,9 +131,9 @@ const { data: storyData, error: storyError } = await supabase
       description_en: values['description-en'] !== '' ? values['description-en'] : null,
       description_el: values['description-el'] !== '' ? values['description-el'] : null,
       artwork_path: artworkStoragePath,
-      category: values['category'] ?? 'fable',
+      category: values.category ?? 'fable',
       tags,
-      published_at: values['publish'] ? new Date().toISOString() : null,
+      published_at: values.publish ? new Date().toISOString() : null,
     },
     { onConflict: 'slug' },
   )
@@ -162,4 +162,4 @@ if (narrationError !== null) {
 }
 
 console.log(`✓ Story "${titleEn}" (${slug}) — voice: ${narratorVoice} — saved successfully.`);
-console.log(`  Published: ${values['publish'] ? 'yes' : 'no (use --publish to make it visible)'}`);
+console.log(`  Published: ${values.publish ? 'yes' : 'no (use --publish to make it visible)'}`);

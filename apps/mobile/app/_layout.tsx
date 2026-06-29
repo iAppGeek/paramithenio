@@ -8,8 +8,8 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 
 initSupabase(
-  process.env['EXPO_PUBLIC_SUPABASE_URL'] ?? '',
-  process.env['EXPO_PUBLIC_SUPABASE_ANON_KEY'] ?? '',
+  process.env.EXPO_PUBLIC_SUPABASE_URL ?? '',
+  process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
 );
 
 const queryClient = new QueryClient();

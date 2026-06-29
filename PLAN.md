@@ -57,7 +57,7 @@ User can tap through all screens on web and mobile; language toggle switches bet
 **Goal:** real story library backed by Supabase.
 
 ### Tasks
-- Supabase project created (human step); apply `0002_stories.sql`; create storage buckets; RLS policies
+- Supabase project created (human step); apply migrations (`20260628000002_stories.sql`, `20260628000003_narrations.sql`, `20260628000004_grants.sql`); create storage buckets; RLS policies
 - `@acme/core` data layer: typed Supabase client, TanStack Query hooks for stories
 - `scripts/add-story.ts`: CLI to import a story (metadata + audio upload)
 - Author 30 stories' metadata; upload audio files

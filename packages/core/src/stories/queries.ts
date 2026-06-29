@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database, NarratorVoice } from '../db/types.js';
+import type { NarratorVoice } from '../db/narrator-voice.js';
+import type { Database } from '../db/types.js';
 import type { Narration, StoryDetail, StorySummary } from './types.js';
 
 type StoryRow = Database['public']['Tables']['stories']['Row'];

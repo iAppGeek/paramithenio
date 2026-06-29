@@ -1,0 +1,7 @@
+# Files Claude must never read — contain real secrets
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
